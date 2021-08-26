@@ -18,12 +18,13 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
+    {src: "~/assets/styles/index.scss", lang: "scss"}
   ],
 
   styleResources: {
     scss: [
-      '@/assets/styles/index.scss'
+      '@/assets/styles/variable.scss'
     ]
   },
 

@@ -3,56 +3,48 @@
     "name": "about",
     "path": "/about",
     "component": "e:\\\\Projects\\\\frontend\\\\pages\\\\about.vue",
-    "chunkName": "pages/about",
-    "_name": "_e6957390"
+    "chunkName": "pages/about"
   },
   {
     "name": "blog",
     "path": "/blog",
     "component": "e:\\\\Projects\\\\frontend\\\\pages\\\\blog\\\\index.vue",
-    "chunkName": "pages/blog/index",
-    "_name": "_70cebb4a"
+    "chunkName": "pages/blog/index"
   },
   {
     "name": "contact",
     "path": "/contact",
     "component": "e:\\\\Projects\\\\frontend\\\\pages\\\\contact.vue",
-    "chunkName": "pages/contact",
-    "_name": "_36f96c8b"
+    "chunkName": "pages/contact"
   },
   {
     "name": "home",
     "path": "/home",
     "component": "e:\\\\Projects\\\\frontend\\\\pages\\\\home.vue",
-    "chunkName": "pages/home",
-    "_name": "_23e08304"
+    "chunkName": "pages/home"
   },
   {
     "name": "search",
     "path": "/search",
     "component": "e:\\\\Projects\\\\frontend\\\\pages\\\\search.vue",
-    "chunkName": "pages/search",
-    "_name": "_e6144fe6"
+    "chunkName": "pages/search"
   },
   {
     "name": "tools",
     "path": "/tools",
     "component": "e:\\\\Projects\\\\frontend\\\\pages\\\\tools\\\\index.vue",
-    "chunkName": "pages/tools/index",
-    "_name": "_41a1c788"
+    "chunkName": "pages/tools/index"
   },
   {
     "name": "blog-detail",
     "path": "/blog/detail",
     "component": "e:\\\\Projects\\\\frontend\\\\pages\\\\blog\\\\detail.vue",
-    "chunkName": "pages/blog/detail",
-    "_name": "_78628ed0"
+    "chunkName": "pages/blog/detail"
   },
   {
     "name": "tools-to-do-list",
     "path": "/tools/to-do-list",
     "component": "e:\\\\Projects\\\\frontend\\\\pages\\\\tools\\\\to-do-list.vue",
-    "chunkName": "pages/tools/to-do-list",
-    "_name": "_452de054"
+    "chunkName": "pages/tools/to-do-list"
   }
 ]
