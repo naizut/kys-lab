@@ -1,14 +1,14 @@
 <template>
   <div class="article detail">
-    <article class="article__content inner-wrap">
+    <div class="article__content inner-wrap">
       <div class="bread-crumb pd20 mb50 pl0">
         <router-link to="/home">Home</router-link> > Blog > <span class="text-primary">{{ article.type }}</span>
       </div>
       <h1>{{ article.title }}</h1>
       <h5>{{ article.modified_on }}</h5>
-      <p class="mt100" v-html="article.content" />
+      <article class="mt100" v-html="article.content" />
       <div class="mt100">分类:{{ article.type }},标签:{{ article.tag }}</div>
-    </article>
+    </div>
   </div>
 </template>
 <script>

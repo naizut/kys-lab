@@ -35,14 +35,14 @@
         >
           <el-row class="title">
             <router-link :to="{ name: 'BlogDetail', params: { id: article.id } }">
-              &lt; {{ article.title }} &gt;
+              <h1>&lt; {{ article.title }} &gt;</h1>
             </router-link>
           </el-row>
           <el-row class="f14">
-            {{ article.created_on }}
+            <p>{{ article.created_on }}</p>
           </el-row>
           <el-row>
-            分类： {{ article.type }}
+            <p>分类： {{ article.type }}</p>
           </el-row>
         </el-row>
       </div>

@@ -11,7 +11,7 @@
              style="line-height: 50px"
         >
           <router-link :to="{name: 'BlogDetail', params: {id: article.id}}">
-            &lt; {{ article.title }} &gt;
+            <h1>&lt; {{ article.title }} &gt;</h1>
           </router-link>
         </div>
       </section>
