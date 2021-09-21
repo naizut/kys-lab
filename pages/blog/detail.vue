@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       article: {},
-      id: this.$route.params.id,
+      id: this.$route.query.id,
     }
   },
   mounted() {

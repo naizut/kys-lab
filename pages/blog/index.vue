@@ -34,9 +34,9 @@
                 class="article"
         >
           <el-row class="title">
-            <router-link :to="{ name: 'BlogDetail', params: { id: article.id } }">
+            <a :href="`/blog/detail/?id=${article.id}`">
               <h1>&lt; {{ article.title }} &gt;</h1>
-            </router-link>
+            </a>
           </el-row>
           <el-row class="f14">
             <p>{{ article.created_on }}</p>
@@ -148,7 +148,7 @@ export default {
         }
       }
       .title {
-        a {
+        a, h1 {
           font-size:20px;
           line-height: 48px;
           font-weight: 300;
