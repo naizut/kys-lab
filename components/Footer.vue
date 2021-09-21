@@ -17,7 +17,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .footer {
-  border-top: 1px solid $mintBlue;
+  border-top: 1px solid $mainColor;
   background-color: #000;
   color: #666;
   .inner-wrap {

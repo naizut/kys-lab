@@ -168,7 +168,7 @@ export default {
 
     &.done {
       background: black;
-      color: #80ffff;
+      color: $mainColor;
     }
     .content {
       overflow: hidden;
@@ -178,7 +178,7 @@ export default {
   }
   /*选中样式*/
   .chosen {
-    border: solid 2px #80ffff !important;
+    border: solid 2px $mainColor !important;
   }
   .check-box {
     border: 1px solid #eee;

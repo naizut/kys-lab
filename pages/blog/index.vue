@@ -1,5 +1,5 @@
 <template>
-  <div v-loading="loading" class="article-list-page">
+  <div class="article-list-page">
     <div class="inner-wrap">
       <!-- BreadCrumb Here -->
       <div class="bread-crumb pd20 mb50 pl0">
@@ -13,12 +13,12 @@
           <el-row class="article-filter-label mb10">
             文章分类：
           </el-row>
-          <el-select v-model="type" @change="handleTypeSelect">
+          <el-select v-model="type"
+                     @change="handleTypeSelect">
             <el-option v-for="item in types"
                        :key="item"
                        :value="item"
-                       :label="item"
-            />
+                       :label="item" />
           </el-select>
         </div>
       </el-row>
@@ -31,8 +31,7 @@
       <div class="article-list">
         <el-row v-for="article in articles"
                 :key="article.id"
-                class="article"
-        >
+                class="article">
           <el-row class="title">
             <a :href="`/blog/detail/?id=${article.id}`">
               <h1>&lt; {{ article.title }} &gt;</h1>
@@ -41,8 +40,12 @@
           <el-row class="f14">
             <p>{{ article.created_on }}</p>
           </el-row>
-          <el-row>
-            <p>分类： {{ article.type }}</p>
+          <el-row class="mt5 tags">
+            <span v-for="(tag, tagIndex) in article.tag.split(',')"
+                  :key="tagIndex"
+                  class="tag">
+              {{tag}}
+            </span>
           </el-row>
         </el-row>
       </div>
@@ -53,25 +56,45 @@
 export default {
   name: 'Blog',
 
+  async asyncData($nuxt) {
+    let articles = {}
+    let types = {}
+    await $nuxt
+      .$axios({
+        url: '/api/articles/list',
+        method: 'get',
+        params: {
+          type: $nuxt.route.query.type || '',
+        },
+      })
+      .then((res) => {
+        articles = res.data.rows
+      })
+
+    await $nuxt
+      .$axios({
+        methods: 'get',
+        url: '/api/articles/types',
+      })
+      .then((res) => {
+        types = Array.from(new Set(res.data.map((x) => x.type)))
+      })
+
+    return {
+      articles,
+      types,
+    }
+  },
+
   data() {
     return {
       articles: {},
       types: [],
-      loading: true,
-      type: this.$route.query.type || ''
+      type: this.$route.query.type || '',
     }
   },
 
-  created() {
-    this.loadPageDatas()
-  },
-
   methods: {
-    async loadPageDatas() {
-      await this.initArticles()
-      await this.initTypes()
-    },
-
     async initArticles() {
       this.loading = true
 
@@ -79,33 +102,23 @@ export default {
         url: '/api/articles/list',
         method: 'get',
         params: {
-          type: this.type
-        }
-      }).then(res => {
-        console.log(res)
+          type: this.type,
+        },
+      }).then((res) => {
         this.articles = res.data.rows
       })
 
       this.loading = false
     },
-
-    async initTypes() {
-      await this.$axios({
-        methods: 'get',
-        url: '/api/articles/types'
-      }).then((res) => {
-        this.types = Array.from(new Set(res.data.map((x) => x.type)))
-      })
-    },
-
     handleTypeSelect(v) {
       this.initArticles()
-    }
-  }
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
 .article-list-page {
+  padding-bottom: 60px;
   .article-filters {
     text-align: left;
   }
@@ -114,18 +127,17 @@ export default {
     clear: both;
   }
   .article-list {
-    border-left: 2px solid #f2f2f2;
-    padding-left: 20px;
     .article {
       text-align: left;
-      transition: all .2s;
+      transition: all 0.2s;
       position: relative;
-      margin-bottom: 30px;
+      border-left: 2px solid #f2f2f2;
+      padding: 0 20px 15px 20px;
 
-      &::after{
+      &::after {
         content: '';
         position: absolute;
-        left: -26px;
+        left: -6px;
         top: 50%;
         transform: translateY(-50%);
         width: 10px;
@@ -135,21 +147,12 @@ export default {
       }
 
       &:hover {
-        opacity: .5;
-      }
-      .tag {
-        color: #666;
-        cursor: pointer;
-        font-size: 14px;
-        line-height: 14px;
-        padding: 0 10px;
-        &:hover{
-          color: #000;
-        }
+        opacity: 0.5;
       }
       .title {
-        a, h1 {
-          font-size:20px;
+        a,
+        h1 {
+          font-size: 20px;
           line-height: 48px;
           font-weight: 300;
           color: #666;

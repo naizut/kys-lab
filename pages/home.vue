@@ -74,7 +74,6 @@ export default {
       that.blogs = res.data.rows.sort((v1, v2) => {
         return new Date(v2.created_on) - new Date(v1.created_on)
       })
-      console.log('xxx', that.blogs)
     })
   }
 }

@@ -185,7 +185,7 @@ export default {
         // &.is-home {color: #fff;}
       }
       &.active a {
-        color: $mintBlue;
+        color: $mainColor;
       }
       &:hover {
         // background-color: #333;
