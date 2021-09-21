@@ -28,7 +28,7 @@ export default {
         }
     },
     mounted() {
-        this.axios({
+        this.$axios({
             method: 'get',
             url: '/api/search?keyword=' + this.keyword
         }).then(res => {

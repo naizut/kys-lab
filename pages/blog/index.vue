@@ -75,7 +75,7 @@ export default {
     async initArticles() {
       this.loading = true
 
-      await this.axios({
+      await this.$axios({
         url: '/api/articles/list',
         method: 'get',
         params: {
@@ -90,7 +90,7 @@ export default {
     },
 
     async initTypes() {
-      await this.axios({
+      await this.$axios({
         methods: 'get',
         url: '/api/articles/types'
       }).then((res) => {

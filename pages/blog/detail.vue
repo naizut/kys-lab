@@ -6,36 +6,37 @@
       </div>
       <h1>{{ article.title }}</h1>
       <h5>{{ article.modified_on }}</h5>
-      <article class="mt100" v-html="article.content" />
+      <article class="mt100"
+               v-html="article.content" />
       <div class="mt100">分类:{{ article.type }},标签:{{ article.tag }}</div>
     </div>
   </div>
 </template>
 <script>
 export default {
-    name: 'BlogDetail',
-    data() {
-        return {
-            article: {},
-            id: this.$route.params.id
-        }
-    },
-    created() {
-        this.axios({
-            method: 'get',
-            url: '/api/articles/detail/' + this.id
-        }).then(res => {
-            this.article = res.data
-        })
+  name: 'BlogDetail',
+  data() {
+    return {
+      article: {},
+      id: this.$route.params.id,
     }
+  },
+  mounted() {
+    this.$axios({
+      method: 'get',
+      url: '/api/articles/detail/' + this.id,
+    }).then((res) => {
+      this.article = res.data
+    })
+  },
 }
 </script>
 <style lang="scss" scoped>
 h1 {
-    margin: 0;
+  margin: 0;
 }
 .article.detail {
-    overflow: hidden;
-    padding: 15px 0;
+  overflow: hidden;
+  padding: 15px 0;
 }
 </style>
