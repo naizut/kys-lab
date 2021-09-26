@@ -87,7 +87,7 @@ export default {
 
   head() {
     return {
-      title: ''
+      title: `Bonjour, je suis Ky`
     }
   },
 

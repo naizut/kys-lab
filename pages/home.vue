@@ -65,6 +65,11 @@ export default {
       blogs: []
     }
   },
+  head() {
+    return {
+      title: 'Ky\'s Lab | 恺的个人网站 - 记录生活, 分享观点'
+    }
+  },
   mounted() {
     this.$axios({
       url: '/api/articles/list',

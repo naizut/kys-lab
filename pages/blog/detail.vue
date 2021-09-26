@@ -43,6 +43,12 @@ export default {
       id: this.$route.query.id,
     }
   },
+
+  head() {
+    return {
+      title: `${this.article.title} | Ky's lab - Idea Factory, Mind Blasting`
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

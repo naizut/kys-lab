@@ -94,6 +94,12 @@ export default {
     }
   },
 
+  head() {
+    return {
+      title: `My Blog | Ky's lab - Idea Factory, Mind Blasting`
+    }
+  },
+
   methods: {
     async initArticles() {
       this.loading = true
