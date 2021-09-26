@@ -67,7 +67,7 @@ export default {
   },
   head() {
     return {
-      title: 'Ky\'s Lab | 恺的个人网站 - 记录生活, 分享观点'
+      title: 'Ky\'s Lab - 记录生活, 分享观点 | Kevin Zhou的个人网站'
     }
   },
   mounted() {

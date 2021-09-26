@@ -9,7 +9,7 @@
     <Footer />
 
     <div id="modeSwitch" @click="switchBlogMode">
-      <button style="background: #fff;border: 1px solid #ccc;">Blog mode</button>
+      <button>Mobile Mode</button>
     </div>
   </div>
 </template>
@@ -43,7 +43,8 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+
+<style lang="scss">
 .layout {
   width: 100%;
   .layout__content-container {
@@ -58,8 +59,13 @@ export default {
     position: absolute;
     top: 0;
     right: calc((100% - 1200px) / 2);
-    cursor: pointer;
     font-size: 12px;
+
+    button {
+      cursor: pointer;
+      background: #fff;
+      border: 1px solid #ccc;
+    }
 
     @media screen and (max-width: 1200px) {
       display: none;
