@@ -33,9 +33,9 @@
                 :key="article.id"
                 class="article">
           <el-row class="title">
-            <a :href="`/blog/detail/?id=${article.id}`">
+            <NuxtLink :to="`/blog/detail/?id=${article.id}`">
               <h1>&lt; {{ article.title }} &gt;</h1>
-            </a>
+            </NuxtLink>
           </el-row>
           <el-row class="f14">
             <p>{{ article.created_on }}</p>

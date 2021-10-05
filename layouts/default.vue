@@ -1,7 +1,7 @@
 <template>
   <div class="page-container layout">
     <Header ref="header" :is-home="false" />
-    
+
     <el-container class="layout__content-container" @click.native="shortenSearchInput()">
       <el-main class="layout__content pd0 mg0">
         <Nuxt />
@@ -17,15 +17,18 @@ import Footer from '@/components/Footer'
 
 export default {
   name: 'Layout',
+
   components: {
     Header,
     Footer
   },
+
   data() {
     return {
       isNight: false
     }
   },
+
   methods: {
     shortenSearchInput() {
       this.$refs.header.shortenSearchInput()

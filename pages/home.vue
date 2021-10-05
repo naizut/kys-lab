@@ -5,14 +5,26 @@
         <div class="inner-wrap">
           <div class="banner-text-wrap">
             <el-row class="banner-text">
-              Just for <span class="text-primary">FUN</span>.
+              <template v-if="isCN">
+                艺术之 <span class="text-primary">设计</span>.
+              </template>
+              <template v-else>
+                The Art of <span class="text-primary">Design</span>.
+              </template>
             </el-row>
-            <el-row class="banner-text pt0">
+            <!-- <el-row class="banner-text pt0">
               In <span class="text-primary">DESIGN</span> we believe.
-            </el-row>
+            </el-row> -->
             <el-row class="banner-text pt0 mt50">
-              <button>
-                <a href="#ourService">Get Design Now</a><i class="el-icon-right ml5" />
+              <button class="f100"
+                      @click="scrollToService()">
+              <template v-if="isCN">
+                立刻体验
+              </template>
+              <template v-else>
+                Get Design Now
+              </template>
+                <i class="el-icon-right ml5" />
               </button>
             </el-row>
           </div>
@@ -21,29 +33,19 @@
       </div>
 
       <div class="home-news">
-        <h1 class="mb30">About Ky's Lab</h1>
         <div class="inner-wrap">
-          <h3>Ky's Lab means <span class="text-primary"
-                                   style="cursor: pointer"
-                                   @click="$router.push('/about')"
-          >Ky</span>
-            and Ky's friends who have extra-ordinary fatastic ideas and all ready to make it real. We take advantage of
-            weekends to achieve our aspirations. </h3>
+          <h1>News</h1>
+          <el-carousel indicator-position="outside">
+            <el-carousel-item v-for="news in newsList"
+                              :key="news">
+              <h3>{{ news }}</h3>
+            </el-carousel-item>
+          </el-carousel>
         </div>
       </div>
 
-      <div class="home-topic">
-        <div class="inner-wrap">
-          <h1>Join Us</h1>
-          <p>We desire for one talented designer! <router-link class="text-primary"
-                                                               to="/about"
-          >Contact Me Now
-          </router-link>
-          </p>
-        </div>
-      </div>
-
-      <div id="ourService" class="home-design">
+      <div id="ourService"
+           class="home-design">
         <div class="inner-wrap">
           <h1 class="text-center">Service</h1>
           <ul>
@@ -52,6 +54,28 @@
           </ul>
         </div>
       </div>
+      
+      <div class="home-about">
+        <h1 class="mb30">About Ky's Lab</h1>
+        <div class="inner-wrap">
+          <h3>Ky's Lab is where <span class="text-primary"
+                  style="cursor: pointer"
+                  @click="$router.push('/about')">Ky</span>
+            shares his extra-ordinary fatastic ideas and all ready to make them real with codes. Anyone want to join is welcome.
+          </h3>
+        </div>
+      </div>
+
+      <div class="home-topic">
+        <div class="inner-wrap">
+          <h1 class="mb30">Join Us</h1>
+          <h3>We desire for talented designers! <router-link class="text-primary"
+                         to="/about">Contact Me Now
+            </router-link>
+          </h3>
+        </div>
+      </div>
+
 
     </div>
   </div>
@@ -60,27 +84,52 @@
 <script>
 export default {
   name: 'Home',
+
   data() {
     return {
-      blogs: []
+      newsList: [],
     }
   },
+
   head() {
     return {
-      title: 'Ky\'s Lab - 记录生活, 分享观点 | Kevin Zhou的个人网站'
+      title: "Ky's Lab - 记录生活, 分享观点 | Kevin Zhou的个人网站",
     }
   },
+
+  computed: {
+    isCN() {
+      return this.$store.state.lang == 'cn'
+    },
+  },
+
   mounted() {
-    this.$axios({
-      url: '/api/articles/list',
-      method: 'get'
-    }).then((res) => {
-      const that = this
-      that.blogs = res.data.rows.sort((v1, v2) => {
-        return new Date(v2.created_on) - new Date(v1.created_on)
+    this.loadPageDatas()
+  },
+
+  methods: {
+    async loadPageDatas() {
+      const res = await this.$axios({
+        url: '/api/articles/list',
+        method: 'get',
       })
-    })
-  }
+      this.newsList = res.data.rows
+        .filter((x) => x.type == '新闻')
+        .sort((v1, v2) => {
+          return new Date(v2.created_on) - new Date(v1.created_on)
+        })
+    },
+    
+    scrollToService() {
+      this.$nextTick(() => {
+        const top = document.getElementById('ourService').offsetTop
+        window.scrollTo({
+          top,
+          behavior: 'smooth',
+        })
+      })
+    },
+  },
 }
 </script>
 
@@ -103,22 +152,26 @@ export default {
         border: 1px solid #f2f2f2;
         border-radius: 50px;
         cursor: pointer;
-        font-size: 30px;
+        font-size: 48px;
         font-weight: 300;
         padding: 10px 30px;
         transition: all 0.6s;
         animation-delay: 2s;
 
-        a {transition: all .6s}
+        a {
+          transition: all 0.6s;
+        }
 
         &:hover {
           background: #000;
           color: #fff;
 
-          a {color: #fff}
+          a {
+            color: #fff;
+          }
         }
 
-        @media screen and (max-width:425px) {
+        @media screen and (max-width: 425px) {
           font-size: 22px;
         }
       }
@@ -129,12 +182,13 @@ export default {
         .banner-text {
           text-align: left;
           color: #000;
-          font-size: 48px;
+          font-size: 100px;
+          font-weight: 300;
           opacity: 0;
           animation: fadeInTop 2s forwards;
 
           &:nth-of-type(2) {
-            animation-delay: .5s;
+            animation-delay: 0.5s;
           }
 
           &:nth-of-type(3) {
@@ -153,14 +207,26 @@ export default {
           }
         }
       }
+    }
 
+    .home-news,
+    .home-about,
+    .home-topic {
+      // background: #000;
+      // color: #fff;
+      padding: 100px 0;
+      h1 {
+        font-size: 48px;
+      }
+    }
+
+    .home-about {
+      border-bottom: 1px solid #ccc;
+      margin: 0 calc((100vw - 1200px) / 2);
     }
 
     .home-news {
-      background: #000;
-      color: #fff;
-      padding: 30px 0;
-      height: 50vh;
+      text-align: left;
     }
 
     .home-design {
@@ -170,12 +236,6 @@ export default {
       h1 {
         margin-bottom: 20px;
       }
-    }
-
-    .home-topic {
-      background: #000;
-      color: #fff;
-      padding: 30px 0;
     }
   }
 }

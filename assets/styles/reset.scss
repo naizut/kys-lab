@@ -45,3 +45,7 @@ ul{
 .el-input.is-active .el-input__inner, .el-input__inner:focus { border-color: $mainColor; }
 .el-select-dropdown__item.selected {color: $mainColor;}
 .el-select .el-input__inner:focus, .el-select .el-input.is-focus .el-input__inner {border-color: $mainColor;}
+
+#languageSwitch .el-select .el-input__inner {
+  border: none;
+}

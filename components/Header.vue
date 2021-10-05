@@ -8,7 +8,7 @@
              alt="Logo"
         >
         <span>s</span> -->
-        <span>Ky's Lab</span>
+        <span>{{isCN?'异度实验室':`Ky's Lab`}}</span>
       </router-link>
       <NavMenuPc ref="navbarPC" :is-home="isHome" />
     </div>
@@ -22,12 +22,20 @@ export default {
   components: {
     NavMenuPc
   },
+
   props: {
     isHome: {
       type: Boolean,
       required: true
     }
   },
+
+  computed: {
+    isCN() {
+      return this.$store.state.lang == 'cn'
+    }
+  },
+  
   methods: {
     shortenSearchInput() {
       this.$refs.navbarPC.hideSearchBar()
@@ -56,7 +64,7 @@ export default {
       display: flex;
       line-height: 100px;
       text-decoration: none;
-      width: 200px;
+      width: 218px;
       img {
         height: 100px;
       }
