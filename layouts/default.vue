@@ -1,16 +1,14 @@
 <template>
   <div class="page-container layout">
     <Header ref="header" :is-home="false" />
+    
     <el-container class="layout__content-container" @click.native="shortenSearchInput()">
       <el-main class="layout__content pd0 mg0">
         <Nuxt />
       </el-main>
     </el-container>
-    <Footer />
 
-    <div id="modeSwitch" @click="switchBlogMode">
-      <button>Mobile Mode</button>
-    </div>
+    <Footer />
   </div>
 </template>
 <script>
@@ -31,15 +29,7 @@ export default {
   methods: {
     shortenSearchInput() {
       this.$refs.header.shortenSearchInput()
-    },
-    switchBlogMode() {
-      Array.from(document.getElementsByClassName('inner-wrap')).forEach(dom => {
-        dom.classList.toggle('blog-mode')
-        const isCenter = dom.classList.contains('blog-mode')
-          document.querySelector('#modeSwitch button').innerText = isCenter ? 'Default mode' : 'Blog mode'
-      })
     }
-
   }
 }
 </script>
@@ -52,23 +42,6 @@ export default {
     position: relative;
     .layout__content {
 
-    }
-  }
-
-  #modeSwitch {
-    position: absolute;
-    top: 0;
-    right: calc((100% - 1200px) / 2);
-    font-size: 12px;
-
-    button {
-      cursor: pointer;
-      background: #fff;
-      border: 1px solid #ccc;
-    }
-
-    @media screen and (max-width: 1200px) {
-      display: none;
     }
   }
 }

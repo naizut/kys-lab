@@ -19,6 +19,7 @@
         </el-input>
       </div>
     </div>
+
     <div class="pull-right nav-pc">
       <ul class="nav-menu-pc pull-right pr40">
         <li v-for="route in routes"
@@ -39,6 +40,11 @@
         </li>
       </ul>
     </div>
+
+    <div id="modeSwitch" class="pull-right nav-pc" @click="switchBlogMode">
+      <button>Reader Mode</button>
+    </div>
+
     <div class="pull-right nav-mobile"
          @click="showNavMobile"
     >
@@ -156,10 +162,19 @@ export default {
     },
     showNavMobile() {
       document.querySelector('.nav-menu-mobile').classList.add('active')
+    },
+
+    switchBlogMode() {
+      Array.from(document.getElementsByClassName('inner-wrap')).forEach(dom => {
+        dom.classList.toggle('blog-mode')
+        const isCenter = dom.classList.contains('blog-mode')
+          document.querySelector('#modeSwitch button').innerText = isCenter ? 'Close Reader Mode' : 'Reader Mode'
+      })
     }
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .navbar-container {
   width: 100%;
@@ -195,6 +210,20 @@ export default {
   }
   .search-zone {
     cursor: pointer;
+  }
+  #modeSwitch {
+    font-size: 12px;
+    margin-top: 40px;
+
+    button {
+      cursor: pointer;
+      background: #fff;
+      border: 1px solid #ccc;
+    }
+
+    @media screen and (max-width: 1200px) {
+      display: none;
+    }
   }
 
   #typesDropdown {
