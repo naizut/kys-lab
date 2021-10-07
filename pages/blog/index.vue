@@ -3,7 +3,7 @@
     <div class="inner-wrap">
       <!-- BreadCrumb Here -->
       <div class="bread-crumb pd20 mb50 pl0">
-        <router-link to="">{{isCN?'首页':'Home'}}</router-link> > {{isCN?'博客':'Blog'}} > <span class="text-primary">{{ $route.query.type }}</span>
+        <router-link to="">{{isCN?'首页':'Home'}}</router-link> > {{isCN?'博客':'Blog'}} <template v-if="$route.query.type">> <span class="text-primary">{{ $route.query.type }}</span></template>
       </div>
 
       <!-- Banner && Brief Here -->

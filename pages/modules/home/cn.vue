@@ -41,11 +41,14 @@
           <h1>服务</h1>
           <el-row :gutter="30"
                   class="img-container">
-            <el-col :span="16">
+            <el-col :span="16"
+                    :xs="24"
+                    @click.native="$router.push('/about')">
               <img src="@/assets/images/service.jpg" />
               <p>个人/企业网站定制</p>
             </el-col>
             <el-col :span="8"
+                    :xs="24"
                     @click.native="$router.push('/about')">
               <img src="@/assets/images/consult.jpg" />
               <p>IT咨询/技术支持</p>
@@ -289,6 +292,10 @@ export default {
               padding-right: 10px;
             }
           }
+        }
+
+        @media screen and (max-width: 568px) {
+          height: auto;
         }
       }
     }
