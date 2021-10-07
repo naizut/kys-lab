@@ -2,13 +2,13 @@
   <div class="article-detail">
     <div class="article__content inner-wrap">
       <div class="bread-crumb pd20 mb50 pl0">
-        <router-link to="/home">Home</router-link> > Blog > <span class="text-primary">{{ article.type }}</span>
+        <router-link to="">{{isCN?'首页':'Home'}}</router-link> > {{isCN?'博客':'Blog'}} > <span class="text-primary">{{ article.type }}</span>
       </div>
       <h1>{{ article.title }}</h1>
       <time>{{ article.modified_on }}</time>
       <article class="mt100"
                v-html="article.content" />
-      <div class="mt100">分类: {{ article.type }}</div>
+      <div class="mt100">{{isCN?'分类':'type'}}: {{ article.type }}</div>
       <div v-if="article.tag" class="mt10">
         <span v-for="(tag, tagIndex) in article.tag.split(',')"
               :key="tagIndex"
@@ -47,6 +47,12 @@ export default {
   head() {
     return {
       title: `${this.article.title} | Ky's lab - Idea Factory, Mind Blasting`
+    }
+  },
+
+  computed: {
+    isCN() {
+      return this.$store.state.lang == 'cn'
     }
   }
 }

@@ -8,7 +8,7 @@
              alt="Logo"
         >
         <span>s</span> -->
-        <span>{{isCN?'异度实验室':`Ky's Lab`}}</span>
+        <span>{{isCN?'奇思实验室':`Ky's Lab`}}</span>
       </router-link>
       <NavMenuPc ref="navbarPC" :is-home="isHome" />
     </div>
@@ -71,6 +71,10 @@ export default {
       span {
         color: #000;
         font-size: 30px;
+
+        @media screen and (max-width: 375px) {
+          font-size: 24px;
+        }
       }
     }
   }

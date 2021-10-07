@@ -47,7 +47,8 @@
       </el-select>
     </div>
 
-    <div id="modeSwitch"
+    <div v-if="$route.path == '/blog/detail'"
+          id="modeSwitch"
          class="pull-right nav-pc"
          :title="isCN?'切换博客模式':'Switch Blog Mode'"
          @click="switchBlogMode"
@@ -129,6 +130,7 @@ export default {
 
   watch: {
     $route(to, from) {
+      this.isCenter = false
       this.pathname = window.location.pathname
       if (to.path == from.path) {
         this.$router.go(0)
@@ -199,6 +201,12 @@ export default {
     },
 
     switchLanguage() {
+      Array.from(document.getElementsByClassName('inner-wrap')).forEach(
+        (dom) => {
+          dom.classList.remove('blog-mode')
+          this.isCenter = false
+        }
+      )
       this.$store.dispatch('switchLanguage', this.language)
     },
   },

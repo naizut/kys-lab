@@ -3,7 +3,7 @@
     <div class="inner-wrap">
       <!-- BreadCrumb Here -->
       <div class="bread-crumb pd20 mb50 pl0">
-        <router-link to="">Home</router-link> > Blog > <span class="text-primary">{{ $route.query.type }}</span>
+        <router-link to="">{{isCN?'首页':'Home'}}</router-link> > {{isCN?'博客':'Blog'}} > <span class="text-primary">{{ $route.query.type }}</span>
       </div>
 
       <!-- Banner && Brief Here -->
@@ -11,7 +11,7 @@
       <el-row class="article-filters pull-left mb30">
         <div class="article-filter">
           <el-row class="article-filter-label mb10">
-            文章分类：
+            {{isCN?'文章分类':'Types'}}：
           </el-row>
           <el-select v-model="type"
                      @change="handleTypeSelect">
@@ -25,7 +25,7 @@
       <!-- 多个分类的前几篇文章代替filters -->
       <!-- 列表模块 -->
       <el-row class="article-list-title mb50 fadeIn">
-        <span class="pull-left f24">Articles</span>
+        <span class="pull-left f24">{{isCN?'文章列表':'Articles'}}</span>
         <span class="pull-right f14">More</span>
       </el-row>
       <div class="article-list">
@@ -33,7 +33,7 @@
                 :key="article.id"
                 class="article">
           <el-row class="title">
-            <NuxtLink :to="`/blog/detail/?id=${article.id}`">
+            <NuxtLink :to="`/blog/detail?id=${article.id}`">
               <h1>&lt; {{ article.title }} &gt;</h1>
             </NuxtLink>
           </el-row>
@@ -97,6 +97,12 @@ export default {
   head() {
     return {
       title: `My Blog | Ky's lab - Idea Factory, Mind Blasting`
+    }
+  },
+
+  computed: {
+    isCN() {
+      return this.$store.state.lang == 'cn'
     }
   },
 

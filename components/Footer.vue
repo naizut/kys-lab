@@ -5,7 +5,7 @@
       <span class="ml5 bei-an">
         <a href="https://beian.aliyun.com/">沪ICP备16033447号-3</a>
       </span>
-      <span id="tech-stack" class="ml10">Based on Vue / Eggjs</span>
+      <span id="tech-stack" class="ml10">Based on Nuxt.js / Egg.js / Element UI</span>
     </div>
   </nav>
 </template>
@@ -19,12 +19,12 @@ export default {
 .footer {
   border-top: 1px solid $mainColor;
   background-color: #000;
-  color: #666;
+  color: #fff;
   .inner-wrap {
     line-height: 45px;
     font-family: 'Alfphabet';
     .bei-an a {
-      color: #666;
+      color: $mainColor;
     }
     #tech-stack {
       @media screen and (max-width: 1200px) {

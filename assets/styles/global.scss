@@ -3,6 +3,10 @@ a {
     color: #000;
 }
 
+img {
+  max-width: 100%;
+}
+
 ul {
     list-style: none;
     padding-left: 0;
@@ -103,9 +107,13 @@ h1,h2,h3,h4,p,ul {margin: 0;font-weight: 300;}
   }
 
   ul, p {
-    margin-bottom: 24px;
+    margin-bottom: 8px;
     font-weight: 400;
     letter-spacing: 1px;
+
+    img {
+      margin: 50px 0;
+    }
   }
 }
 
