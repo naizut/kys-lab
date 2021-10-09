@@ -44,7 +44,7 @@
             <el-col :span="16"
                     :xs="24"
                     @click.native="$router.push('/about')">
-              <img src="@/assets/images/service.jpg" />
+              <img src="@/assets/images/home-service.jpg" />
               <p>个人/企业网站定制</p>
             </el-col>
             <el-col :span="8"

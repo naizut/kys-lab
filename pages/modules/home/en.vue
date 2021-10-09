@@ -40,7 +40,7 @@
                   class="img-container">
             <el-col :span="16"
                     :xs="24" @click.native="$router.push('/about')">
-              <img src="@/assets/images/service.jpg" />
+              <img src="@/assets/images/home-service.jpg" />
               <p>INDIVIDUAL / CORPORATE WEBSITES</p>
             </el-col>
             <el-col :span="8"
