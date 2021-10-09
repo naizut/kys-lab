@@ -46,7 +46,7 @@
             <el-col :span="8"
                     :xs="24"
                     @click.native="$router.push('/about')">
-              <img src="@/assets/images/consult.jpg" />
+              <img src="@/assets/images/home-consult.jpg" />
               <p>IT SUPPORT CONSULT</p>
             </el-col>
           </el-row>
