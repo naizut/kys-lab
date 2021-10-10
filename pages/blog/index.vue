@@ -14,6 +14,7 @@
             {{isCN?'文章分类':'Types'}}：
           </el-row>
           <el-select v-model="type"
+                     :placeholder="isCN?'选择文章分类':'Select Type'"
                      @change="handleTypeSelect">
             <el-option v-for="item in types"
                        :key="item"
