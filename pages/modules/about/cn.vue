@@ -52,6 +52,16 @@ export default {
     return {
       projects: [
         {
+          name: '紫江',
+          filename: 'zijiang.svg',
+          url: 'http://zijiangfoundation.com/',
+        },
+        {
+          name: 'Tuntex',
+          filename: 'tuntex.svg',
+          url: 'https://www.tuntex-carpet.com/',
+        },
+        {
           name: 'high创',
           filename: 'highco.svg',
           url: 'http://www.highcogroup.com',
@@ -62,24 +72,14 @@ export default {
           url: 'http://www.eurobath.cn',
         },
         {
-          name: 'Tuntex',
-          filename: 'tuntex.svg',
-          url: 'https://www.tuntex-carpet.com/',
-        },
-        {
-          name: '紫江',
-          filename: 'zijiang.svg',
-          url: 'http://zijiangfoundation.com/',
+          name: 'WeEn-semi',
+          filename: 'ween.svg',
+          url: 'https://www.ween-semi.com/',
         },
         {
           name: '幸福五号',
           filename: 'zizhu.svg',
           url: 'http://www.zizhufive.org/',
-        },
-        {
-          name: 'WeEn-semi',
-          filename: 'ween.svg',
-          url: 'https://www.ween-semi.com/',
         },
       ],
     }
