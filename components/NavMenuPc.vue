@@ -38,7 +38,9 @@
     <div id="languageSwitch"
          class="pull-right nav-pc">
       <el-select v-model="language"
-                 @change="switchLanguage">
+                 :placeholder="isCN?'选择语言':'Select Language'"
+                 @change="switchLanguage"
+                 >
         <el-option v-for="langOption in langOptions"
                    :key="langOption.name"
                    :label="langOption.name"
