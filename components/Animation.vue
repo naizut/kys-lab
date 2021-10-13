@@ -19,7 +19,7 @@ export default {
         $.fillStyle = 'white'
         $.fillRect(0, 0, w, h)
         for (let i = -60; i < 60; i += 1) {
-          $.strokeStyle = 'rgba(128,255,255, .5)'
+          $.strokeStyle = 'rgba(128,255,255, .05)'
           $.beginPath()
           $.moveTo(0, h / 2)
           for (let j = 0; j < w; j += 10) {
@@ -42,7 +42,7 @@ export default {
         function () {
           c.width = w = window.innerWidth
           c.height = h = window.innerHeight
-          $.fillStyle = 'rgba(128,255,255, .5)'
+          $.fillStyle = 'rgba(128,255,255, .05)'
         },
         false
       )

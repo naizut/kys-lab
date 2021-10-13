@@ -168,7 +168,7 @@ export default {
         }
 
         @media screen and (max-width: 568px) {
-          font-size: 18px;
+          font-size: 20px;
         }
       }
 
@@ -271,6 +271,10 @@ export default {
         & > * {
           position: relative;
           height: 100%;
+        }
+
+        > div {
+          margin-bottom: 20px
         }
 
         img {

@@ -10,7 +10,7 @@
         <div class="avatar f28">
           <div class="avatar-img">我是头像 :D</div>
           <div class="info mt30">
-            <p>老周</p>
+            <p>我叫 周</p>
             <h4>前端攻城狮，2年前端开发与应用维护经验。</h4>
           </div>
         </div>
