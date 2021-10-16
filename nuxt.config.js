@@ -13,7 +13,6 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { href: 'https://cdn.bootcdn.net/ajax/libs/lato-font/3.0.0/css/lato-font.min.css', rel: 'stylesheet' }
     ]
   },
 

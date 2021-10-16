@@ -237,6 +237,7 @@ export default {
         transition: ease 0.3s all;
         display: block;
         padding: 0 20px;
+        font-weight: 400;
         // &.is-home {color: #fff;}
       }
       &.active a {

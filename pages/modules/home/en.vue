@@ -149,7 +149,6 @@ export default {
         border-radius: 50px;
         cursor: pointer;
         font-size: 48px;
-        font-weight: 300;
         padding: 10px 30px;
         transition: all 0.6s;
         animation-delay: 2s;
@@ -179,7 +178,6 @@ export default {
           text-align: left;
           color: #000;
           font-size: 78px;
-          font-weight: 300;
           opacity: 0;
           animation: fadeInTop 2s forwards;
 
