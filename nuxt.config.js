@@ -8,8 +8,9 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { hid: 'description', name: 'description', content: '奇思实验室 - 记录生活, 分享观点 | 周文恺的个人网站' },
+      { name: 'format-detection', content: 'telephone=no' },
+      { name: 'Keywords', content: `周文恺,个人网站,奇思实验室,KysLab,个人网页,个人站点,个人博客,个人主页,个人网站外包,个人博客外包,企业网站外包`}
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

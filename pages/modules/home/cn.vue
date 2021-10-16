@@ -93,7 +93,7 @@ export default {
 
   head() {
     return {
-      title: "Ky's Lab - 记录生活, 分享观点 | Kevin Zhou的个人网站",
+      title: "奇思实验室 - 记录生活, 分享观点 | Kevin Zhou的个人网站",
     }
   },
 
