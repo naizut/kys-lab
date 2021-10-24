@@ -1,16 +1,18 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'frontend',
+    title: `奇思实验室 - 记录生活, 分享观点 | 周文恺的个人网站`,
+
     htmlAttrs: {
-      lang: 'en'
+      lang: 'zh-CN'
     },
+    
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '奇思实验室 - 记录生活, 分享观点 | 周文恺的个人网站' },
       { name: 'format-detection', content: 'telephone=no' },
-      { name: 'keywords', content: `周文恺,个人网站,奇思实验室,个人网站,个人博客`}
+      { name: 'keywords', content: `周文恺,奇思实验室,web前端`},
+      { hid: 'description', name: 'description', content: '奇思实验室 - 记录生活, 分享观点 | 周文恺的个人网站' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
