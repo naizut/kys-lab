@@ -6,7 +6,7 @@ export default {
     htmlAttrs: {
       lang: 'zh-CN'
     },
-    
+
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -42,7 +42,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/element-ui'
+    { src: '@/plugins/element-ui'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -77,7 +77,19 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: [/^element-ui/],
+    analyze: true,
+    maxChunkSize: 300000,
+    babel: {
+      plugins: [
+          [
+              'component',
+              {
+                  'libraryName': 'element-ui',
+                  'styleLibraryName': 'theme-chalk'
+              }
+          ]
+      ]
+  }
   },
 
   loading: false

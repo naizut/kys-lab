@@ -1,10 +1,10 @@
 <template>
-  <el-container class="my-tools app-list">
+  <div class="my-tools app-list">
     <div class="inner-wrap">
       <el-row :gutter="20">
         <el-col :span="8"
                 class="app pd20"
-                @click.native="goTo('ToDoList')"
+                @click.native="gotoTODO()"
         >
           <el-row>
             <el-image :src="require('@/assets/images/todolist.png')" />
@@ -15,16 +15,14 @@
         </el-col>
       </el-row>
     </div>
-  </el-container>
+  </div>
 </template>
 <script>
 export default {
   components: {},
   methods: {
-    goTo(pathName) {
-      this.$router.push({
-        name: pathName
-      })
+    gotoTODO(pathName) {
+      this.$router.push('/tools/to-do-list')
     }
   }
 }

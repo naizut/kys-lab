@@ -8,9 +8,6 @@
             <el-row class="banner-text">
               艺术之 <span class="text-primary">设计</span>.
             </el-row>
-            <!-- <el-row class="banner-text pt0">
-              In <span class="text-primary">DESIGN</span> we believe.
-            </el-row> -->
             <el-row class="banner-text pt0 mt50">
               <button class="f100"
                       @click="scrollToService()">
