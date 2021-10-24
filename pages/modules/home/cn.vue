@@ -2,7 +2,7 @@
   <div class="home">
     <div class="body">
       <div class="banner-zone text-center">
-        <Animation />
+        <!-- <Animation /> -->
         <div class="inner-wrap">
           <div class="banner-text-wrap">
             <el-row class="banner-text">
