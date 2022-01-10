@@ -156,7 +156,7 @@ export default {
         methods: 'get',
         url: '/api/articles/types',
       })
-      this.types = Array.from(new Set(res.data.map((x) => x.type)))
+      this.types = [...res.data.result]
     },
 
     bindEvents() {

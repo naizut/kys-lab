@@ -100,15 +100,15 @@ export default {
 
   methods: {
     async loadPageDatas() {
-      const res = await this.$axios({
-        url: '/api/articles/list',
-        method: 'get',
-      })
-      this.newsList = res.data.rows
-        .filter((x) => x.type == '新闻')
-        .sort((v1, v2) => {
-          return new Date(v2.created_on) - new Date(v1.created_on)
-        })
+      // const res = await this.$axios({
+      //   url: '/api/articles/list',
+      //   method: 'get',
+      // })
+      // this.newsList = res.data.rows
+      //   .filter((x) => x.type == '新闻')
+      //   .sort((v1, v2) => {
+      //     return new Date(v2.created_on) - new Date(v1.created_on)
+      //   })
     },
 
     scrollToService() {

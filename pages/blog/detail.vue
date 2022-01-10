@@ -27,9 +27,9 @@ export default {
 
     await $nuxt.$axios({
       method: 'get',
-      url: '/api/articles/detail/' + $nuxt.route.query.id,
+      url: '/api/articles/get/' + $nuxt.route.query.id,
     }).then((res) => {
-      article = {...res.data}
+      article = {...res.data.result}
     })
 
     return {

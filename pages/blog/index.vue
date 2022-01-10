@@ -3,7 +3,11 @@
     <div class="inner-wrap">
       <!-- BreadCrumb Here -->
       <div class="bread-crumb pd20 mb10 pl0">
-        <router-link to="">{{isCN?'首页':'Home'}}</router-link> > {{isCN?'博客':'Blog'}} <template v-if="$route.query.type">> <span class="text-primary">{{ $route.query.type }}</span></template>
+        <router-link to="">{{ isCN ? '首页' : 'Home' }}</router-link> >
+        {{ isCN ? '博客' : 'Blog' }}
+        <template v-if="$route.query.type"
+          >> <span class="text-primary">{{ $route.query.type }}</span></template
+        >
       </div>
 
       <!-- Banner && Brief Here -->
@@ -11,28 +15,30 @@
       <el-row class="article-filters pull-left mb30">
         <div class="article-filter">
           <el-row class="article-filter-label mb10">
-            {{isCN?'文章分类':'Types'}}：
+            {{ isCN ? '文章分类' : 'Types' }}：
           </el-row>
-          <el-select v-model="type"
-                     :placeholder="isCN?'选择文章分类':'Select Type'"
-                     @change="handleTypeSelect">
-            <el-option v-for="item in types"
-                       :key="item"
-                       :value="item"
-                       :label="item" />
+          <el-select
+            v-model="type"
+            :placeholder="isCN ? '选择文章分类' : 'Select Type'"
+            @change="handleTypeSelect"
+          >
+            <el-option
+              v-for="item in types"
+              :key="item"
+              :value="item"
+              :label="item"
+            />
           </el-select>
         </div>
       </el-row>
       <!-- 多个分类的前几篇文章代替filters -->
       <!-- 列表模块 -->
       <el-row class="article-list-title mb50 fadeIn">
-        <span class="pull-left f24">{{isCN?'文章列表':'Articles'}}</span>
+        <span class="pull-left f24">{{ isCN ? '文章列表' : 'Articles' }}</span>
         <span class="pull-right f14">More</span>
       </el-row>
       <div class="article-list">
-        <el-row v-for="article in articles"
-                :key="article.id"
-                class="article">
+        <el-row v-for="article in articles" :key="article.id" class="article">
           <el-row class="title">
             <NuxtLink :to="`/blog/detail?id=${article.id}`">
               <h1>&lt; {{ article.title }} &gt;</h1>
@@ -42,10 +48,12 @@
             <p>{{ article.created_on }}</p>
           </el-row>
           <el-row class="mt5 tags">
-            <span v-for="(tag, tagIndex) in article.tag.split(',')"
-                  :key="tagIndex"
-                  class="tag">
-              {{tag}}
+            <span
+              v-for="(tag, tagIndex) in article.tags.split(',')"
+              :key="tagIndex"
+              class="tag"
+            >
+              {{ tag }}
             </span>
           </el-row>
         </el-row>
@@ -58,28 +66,29 @@ export default {
   name: 'Blog',
 
   async asyncData($nuxt) {
-    let articles = {}
     let types = {}
-    await $nuxt
-      .$axios({
-        url: '/api/articles/list',
-        method: 'get',
-        params: {
-          type: $nuxt.route.query.type || '',
-        },
-      })
-      .then((res) => {
-        articles = res.data.rows
-      })
+    await $nuxt.$axios({
+      methods: 'get',
+      url: '/api/articles/types',
+    })
+    .then((res) => {
+      types = [...res.data.result]
+    })
 
-    await $nuxt
-      .$axios({
-        methods: 'get',
-        url: '/api/articles/types',
-      })
-      .then((res) => {
-        types = Array.from(new Set(res.data.map((x) => x.type)))
-      })
+    let articles = {}
+    await $nuxt.$axios({
+      url: '/api/articles/query',
+      method: 'post',
+      data: {
+        type: $nuxt.route.query.type || '',
+        keywords: '',
+        pageIndex: 1,
+        pageSize: 10,
+      },
+    })
+    .then((res) => {
+      articles = res.data.result
+    })
 
     return {
       articles,
@@ -97,14 +106,14 @@ export default {
 
   head() {
     return {
-      title: `My Blog | Ky's lab - Idea Factory, Mind Blasting`
+      title: `My Blog | Ky's lab - Idea Factory, Mind Blasting`,
     }
   },
 
   computed: {
     isCN() {
       return this.$store.state.lang == 'cn'
-    }
+    },
   },
 
   methods: {
@@ -112,33 +121,41 @@ export default {
       this.loading = true
 
       await this.$axios({
-        url: '/api/articles/list',
-        method: 'get',
-        params: {
+        url: '/api/articles/query',
+        method: 'post',
+        data: {
           type: this.type,
+          keywords: '',
+          pageIndex: 1,
+          pageSize: 10,
         },
       }).then((res) => {
-        this.articles = res.data.rows
+        this.articles = res.data.result
       })
 
       this.loading = false
     },
+
     handleTypeSelect(v) {
       this.initArticles()
     },
   },
 }
 </script>
+
 <style lang="scss" scoped>
 .article-list-page {
   padding-bottom: 60px;
+
   .article-filters {
     text-align: left;
   }
+
   .article-list-title {
     text-align: left;
     clear: both;
   }
+
   .article-list {
     .article {
       text-align: left;
@@ -162,6 +179,7 @@ export default {
       &:hover {
         opacity: 0.5;
       }
+      
       .title {
         a,
         h1 {
