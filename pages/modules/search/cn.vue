@@ -28,12 +28,18 @@ export default {
         }
     },
     mounted() {
-        this.$axios({
-            method: 'get',
-            url: '/api/search?keyword=' + this.keyword
-        }).then(res => {
-            this.articles = res.data
-        })
+    this.$axios({
+      method: 'post',
+      url: '/api/articles/query',
+      data: {
+        type: '',
+        keywords: this.keyword || '',
+        pageIndex: 1,
+        pageSize: 10,
+      },
+    }).then((res) => {
+      this.articles = res.data
+    })
     }
 }
 </script>
