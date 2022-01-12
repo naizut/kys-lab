@@ -22,6 +22,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   name: 'Search',
@@ -42,7 +43,7 @@ export default {
         pageSize: 10,
       },
     }).then((res) => {
-      this.articles = res.data
+      this.articles = res.data.result
     })
   },
 }
