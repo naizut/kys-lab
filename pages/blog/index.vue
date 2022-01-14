@@ -3,7 +3,7 @@
     <div class="inner-wrap">
       <!-- BreadCrumb Here -->
       <div class="bread-crumb pd20 mb10 pl0">
-        <router-link to="">{{ isCN ? '首页' : 'Home' }}</router-link> >
+        <router-link to="/home">{{ isCN ? '首页' : 'Home' }}</router-link> >
         {{ isCN ? '博客' : 'Blog' }}
         <template v-if="$route.query.type"
           >> <span class="text-primary">{{ $route.query.type }}</span></template
@@ -45,7 +45,7 @@
             </NuxtLink>
           </el-row>
           <el-row class="f14">
-            <p>{{ article.created_on }}</p>
+            <p>最后编辑时间: {{ new Date(article.modified_on).toLocaleString() }}</p>
           </el-row>
           <el-row class="mt5 tags">
             <span
@@ -141,6 +141,7 @@ export default {
         data: this.queryInput,
       }).then((res) => {
         this.articles = res.data.result.items
+        this.totalCount = res.data.result.totalCount
       })
 
       this.loading = false
@@ -158,6 +159,7 @@ export default {
     },
 
     handleTypeSelect(v) {
+      this.$router.replace(`/blog?type=${v}`)
       this.initArticles()
     },
   },
