@@ -6,11 +6,13 @@ import {
   Row,
   Col,
   Option,
-  Select
+  Select,
+  Pagination
 } from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/en'
 
 const components = [
+  Pagination,
   Container,
   Select,
   Option,

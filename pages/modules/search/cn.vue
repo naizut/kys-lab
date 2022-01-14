@@ -38,7 +38,7 @@ export default {
         pageSize: 10,
       },
     }).then((res) => {
-      this.articles = res.data.result
+      this.articles = res.data.result.items
     })
     }
 }

@@ -59,6 +59,14 @@
         </el-row>
       </div>
     </div>
+    <el-pagination
+      :current-page="queryInput.pageIndex"
+      :page-size="queryInput.pageSize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="totalCount"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange">
+    </el-pagination>
   </div>
 </template>
 <script>
@@ -76,23 +84,30 @@ export default {
     })
 
     let articles = {}
+    let totalCount = 0
+
+    const queryInput = {
+      type: $nuxt.route.query.type || '',
+      keywords: '',
+      pageIndex: 1,
+      pageSize: 10,
+    }
+
     await $nuxt.$axios({
       url: '/api/articles/query',
       method: 'post',
-      data: {
-        type: $nuxt.route.query.type || '',
-        keywords: '',
-        pageIndex: 1,
-        pageSize: 10,
-      },
+      data: queryInput,
     })
     .then((res) => {
-      articles = res.data.result
+      articles = [...res.data.result.items]
+      totalCount = res.data.result.totalCount
     })
 
     return {
       articles,
       types,
+      totalCount,
+      queryInput
     }
   },
 
@@ -123,17 +138,23 @@ export default {
       await this.$axios({
         url: '/api/articles/query',
         method: 'post',
-        data: {
-          type: this.type,
-          keywords: '',
-          pageIndex: 1,
-          pageSize: 10,
-        },
+        data: this.queryInput,
       }).then((res) => {
-        this.articles = res.data.result
+        this.articles = res.data.result.items
       })
 
       this.loading = false
+    },
+
+    handleCurrentChange(i) {
+      this.queryInput.pageIndex = i
+      this.initArticles()
+    },
+
+    handleSizeChange(size) {
+      this.queryInput.pageIndex = 1
+      this.queryInput.pageSize = size
+      this.initArticles()
     },
 
     handleTypeSelect(v) {
@@ -157,6 +178,8 @@ export default {
   }
 
   .article-list {
+    min-height: 80vh;
+
     .article {
       text-align: left;
       transition: all 0.2s;
