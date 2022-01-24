@@ -45,7 +45,7 @@
             </NuxtLink>
           </el-row>
           <el-row class="f14">
-            <p>最后编辑时间: {{ new Date(article.modified_on).toLocaleString() }}</p>
+            <p>最后编辑时间: {{ article.modifyTime }}</p>
           </el-row>
           <el-row class="mt5 tags">
             <span
