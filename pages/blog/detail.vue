@@ -27,7 +27,7 @@ export default {
 
     await $nuxt.$axios({
       method: 'get',
-      url: '/api/articles/get/' + $nuxt.route.query.id,
+      url: `/api/articles/get/${$nuxt.route.query.id}`,
     }).then((res) => {
       article = {...res.data.result}
     })
@@ -57,6 +57,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .article-detail {
   overflow: hidden;
