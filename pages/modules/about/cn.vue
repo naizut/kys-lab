@@ -10,26 +10,24 @@
         <div class="avatar f28">
           <div class="avatar-img">我是头像 :D</div>
           <div class="info mt30">
-            <p>我叫 周</p>
-            <h4>前端攻城狮，2年前端开发与应用维护经验。</h4>
+            <h4>Kevin Zhou</h4>
+            <p>坐标上海，一枚95后前端攻城狮 拥有三年web前端开发经验</p>
+            <p>主要爱好足球，英超阿森纳足球俱乐部支持者，个人游戏开发爱好者，女声Trance</p>
           </div>
         </div>
 
         <div class="contact">
           <h1>联系方式</h1>
           <p class="f28">微信: <span class="text-primary">vincarchou</span> (推荐)</p>
-          <h4 class="f18">邮箱: naizut@163.com (正式)</h4>
         </div>
       </div>
 
       <div class="my-production">
-
         <el-row class="text-center f24 mt30">
-          主程或参与过以下项目的开发 (作为参考)：
+          曾作为主程参与以下项目的开发：
         </el-row>
 
-        <el-row class="projects"
-                :gutter="20">
+        <el-row class="projects" :gutter="20">
           <el-col v-for="(proj, index) in projects"
                   :key="index"
                   class="item mt50"
@@ -65,11 +63,6 @@ export default {
           name: 'high创',
           filename: 'highco.svg',
           url: 'http://www.highcogroup.com',
-        },
-        {
-          name: '歐寶',
-          filename: 'eurobath.svg',
-          url: 'http://www.eurobath.cn',
         },
         {
           name: 'WeEn-semi',
