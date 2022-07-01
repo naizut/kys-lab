@@ -273,7 +273,7 @@ export default {
     margin-right: 20px;
     margin-top: 30px;
 
-    max-width: 100px;
+    max-width: 108px;
   }
 
   #typesDropdown {
