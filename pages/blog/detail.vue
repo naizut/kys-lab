@@ -30,6 +30,9 @@ export default {
       url: `/api/articles/get/${$nuxt.route.query.id}`,
     }).then((res) => {
       article = {...res.data.result}
+    }).catch((err)=> {
+      console.log(err)
+      $nuxt.redirect('/blog')
     })
 
     return {

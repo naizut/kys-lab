@@ -22,6 +22,7 @@
             :placeholder="isCN ? '选择文章分类' : 'Select Type'"
             @change="handleTypeSelect"
           >
+            <el-option :label="isCN ? '全部' : 'All'" :value="''"></el-option>
             <el-option
               v-for="item in types"
               :key="item"
@@ -60,6 +61,7 @@
       </div>
     </div>
     <el-pagination
+      v-if="totalCount>10"
       :current-page="queryInput.pageIndex"
       :page-size="queryInput.pageSize"
       layout="total, sizes, prev, pager, next, jumper"
