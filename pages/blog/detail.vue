@@ -2,7 +2,7 @@
   <div class="article-detail">
     <div class="article__content inner-wrap">
       <div class="bread-crumb pd20 mb50 pl0">
-        <router-link to="">{{isCN?'首页':'Home'}}</router-link> > {{isCN?'博客':'Blog'}} <template v-if="$route.query.type">> <span class="text-primary">{{ $route.query.type }}</span></template>
+        <router-link to="/home">{{isCN?'首页':'Home'}}</router-link> > {{isCN?'博客':'Blog'}} <template v-if="$route.query.type">> <span class="text-primary">{{ $route.query.type }}</span></template>
       </div>
       <h1>{{ article.title }}</h1>
       <time>{{ article.modified_on }}</time>
