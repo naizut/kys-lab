@@ -2,10 +2,10 @@
   <div class="article-detail">
     <div class="article__content inner-wrap">
       <div class="bread-crumb pd20 mb50 pl0">
-        <router-link to="">{{isCN?'首页':'Home'}}</router-link> > {{isCN?'博客':'Blog'}} <template v-if="$route.query.type">> <span class="text-primary">{{ $route.query.type }}</span></template>
+        <router-link to="/home">{{isCN?'首页':'Home'}}</router-link> > {{isCN?'博客':'Blog'}} <template v-if="$route.query.type">> <span class="text-primary">{{ $route.query.type }}</span></template>
       </div>
       <h1>{{ article.title }}</h1>
-      <time>{{ article.modifyTime }}</time>
+      <time>{{ article.modified_on }}</time>
       <article class="mt100"
                v-html="article.content" />
       <div class="mt100">{{isCN?'分类':'type'}}: {{ article.type }}</div>
@@ -30,6 +30,9 @@ export default {
       url: `/api/articles/get/${$nuxt.route.query.id}`,
     }).then((res) => {
       article = {...res.data.result}
+    }).catch((err)=> {
+      console.log(err)
+      $nuxt.redirect('/blog')
     })
 
     return {
