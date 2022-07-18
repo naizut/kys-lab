@@ -49,7 +49,7 @@
         >
         </el-input>
         <el-input
-          v-model="comment.author_email"
+          v-model="comment.authorEmail"
           type="text"
           placeholder="Your Email"
           maxlength="100"
@@ -85,11 +85,13 @@ export default {
   data() {
     return {
       comment: {
-        author: '',
-        author_email: '',
         content: '',
-        rootCommentId: '',
-        targetCommentId: '',
+        author: '',
+        authorEmail: '',
+        articleId: -1,
+        rootCommentId: -1,
+        targetCommentId: -1,
+        targetCommentFloorNum: -1,
         targetCommentAuthor: '',
       },
       comments: {
