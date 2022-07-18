@@ -12,7 +12,7 @@
         <h1>{{ article.title }}</h1>
         <time>{{ article.modified_on }}</time>
         <article v-html="article.content" />
-        <div class="mt20">{{ isCN ? '分类' : 'type' }}: {{ article.type }}</div>
+        <div class="mt20">{{ isCN ? '分类' : 'Type' }}: {{ article.type }}</div>
         <div v-if="article.tag">
           <span
             v-for="(tag, tagIndex) in article.tag.split(',')"
@@ -28,9 +28,9 @@
         <Discussion :article-id="Number(id)" />
       </div>
 
-      <div class="right-sidebar">
+      <!-- <div class="right-sidebar">
         Advertisement
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -87,6 +87,9 @@ export default {
   overflow: hidden;
   padding: 15px 0;
   padding-bottom: 60px;
+  @media screen and (max-width: 599px) {
+    padding-bottom: 60px;
+  }
 
   .inner-wrap {
     display: flex;

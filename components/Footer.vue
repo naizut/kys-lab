@@ -25,7 +25,7 @@ export default {
     line-height: 1.5;
     font-family: 'Alfphabet';
     .bei-an a {
-      color: $mainColor;
+      color: #fff;
     }
     #tech-stack {
       @media screen and (max-width: 1200px) {

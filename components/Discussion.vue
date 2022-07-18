@@ -1,14 +1,42 @@
 <template>
   <div class="discussion">
-    <h2 class="mb50">Discussion</h2>
+    <h2 class="discussion-title">Discussion</h2>
     <div
-      v-for="(commentItem, commentIndex) in comments.items"
+      v-for="(commentItem, commentItemIndex) in comments.items"
       :key="commentItem.id"
+      class="comment-item"
     >
-      {{ commentIndex }}# {{ commentItem.author }} <br />
-      {{ commentItem.content }}
+      <!-- <div v-show="commentItem.target_comment_id">
+        Reply To: #{{commentItem.target_comment_floor_num}} {{commentItem.target_comment_author}}
+      </div> -->
+      <div>
+        <h3>{{ commentItem.author }}</h3>
+        <a
+          href="javascript:void()"
+          @click="doReply(commentItem, commentItemIndex)"
+          >Reply</a
+        >
+      </div>
+      <time>Posted on {{ commentItem.created_on }}</time>
+      <br />
+      <p>{{ commentItem.content }}</p>
+
+      <div v-for="(subComment, subCommentIndex) in commentItem.children" :key="subComment.id" class="comment-level-2 ml20 mt20">
+        <div>
+          <h3>{{ subComment.author }}</h3>
+          <a
+            href="javascript:void()"
+            @click="doReply(subComment, subCommentIndex)"
+            >Reply</a
+          >
+        </div>
+        <time>Posted on {{ subComment.created_on }}</time>
+      </div>
     </div>
     <div class="comment-form">
+      <div v-show="comment.targetCommentId" class="comment-reply mb10">
+        Reply to:{{ comment.targetCommentAuthor }}
+      </div>
       <div class="comment-contact">
         <el-input
           v-model="comment.author"
@@ -17,6 +45,7 @@
           maxlength="20"
           show-word-limit
           class="mr5"
+          round
         >
         </el-input>
         <el-input
@@ -33,12 +62,13 @@
         v-model="comment.content"
         type="textarea"
         placeholder="请输入内容"
-        maxlength="200"
+        maxlength="500"
         show-word-limit
         class="mt10"
+        :autosize="{ minRows: 10, maxRows: 30 }"
       >
       </el-input>
-      <el-button class="mt10" @click="handleSubmit">Submit</el-button>
+      <el-button class="mt10" @click="doSubmit">Submit</el-button>
     </div>
   </div>
 </template>
@@ -48,16 +78,19 @@ export default {
   props: {
     articleId: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
-  
+
   data() {
     return {
       comment: {
         author: '',
         author_email: '',
         content: '',
+        rootCommentId: '',
+        targetCommentId: '',
+        targetCommentAuthor: '',
       },
       comments: {
         items: [],
@@ -65,25 +98,47 @@ export default {
       },
     }
   },
-  
-  async mounted() {
-    const res = await this.$axios({
-      method: 'post',
-      url: `/api/comments/query`,
-      data: {
-        keywords: '',
-        articleId: Number(this.articleId),
-        pageIndex: 1,
-        pageSize: 10,
-      },
-    })
-    if (res.isSuccess) {
-      this.comments = { ...res.data.result }
-    }
+
+  created() {
+    this.getComments()
   },
 
   methods: {
-    async handleSubmit() {
+    async getComments() {
+      const res = await this.$axios({
+        method: 'post',
+        url: `/api/comments/query`,
+        data: {
+          keywords: '',
+          articleId: Number(this.articleId),
+          pageIndex: 1,
+          pageSize: 10,
+        },
+      })
+      if (res.data.code == 200) {
+        this.comments = { ...res.data.result }
+        this.comments.items = this.comments.items.filter(
+          (x) => !x.root_comment_id
+        )
+        this.comments.items = this.comments.items.map((x) => {
+          x.children = [
+            ...res.data.result.items.filter((y) => y.root_comment_id == x.id),
+          ]
+          return x
+        })
+      }
+    },
+    doReply(obj, index) {
+      if(obj.rootCommentId) {
+        this.comment.rootCommentId = obj.rootCommentId
+      }else {
+        this.comment.rootCommentId = obj.id
+      }
+      this.comment.targetCommentId = obj.id
+      this.comment.targetCommentAuthor = obj.author
+      this.comment.targetCommentFloorNum = index
+    },
+    async doSubmit() {
       const { author, content } = this.comment
       if (!author || !content) {
         alert('plz input author and content')
@@ -95,7 +150,7 @@ export default {
         url: `/api/comments/create`,
         data: {
           ...this.comment,
-          articleId: this.article.id,
+          articleId: this.articleId,
         },
       })
         .then((res) => {
@@ -112,6 +167,35 @@ export default {
 
 <style lang="scss" scoped>
 .discussion {
+  width: 100%;
+  .discussion-title {
+    font-size: 38px;
+  }
+  .comment-item {
+    margin: 30px 0;
+
+    div {
+      overflow: hidden;
+      h3 {
+        margin: 0;
+        font-weight: bold;
+      }
+      a {
+        text-decoration: underline;
+        float: right;
+        margin-top: 5px;
+      }
+    }
+
+    p {
+      margin-top: 10px;
+      font-family: Lato;
+      font-weight: 600;
+    }
+    time {
+      font-size: 12px;
+    }
+  }
   .comment-form {
     .comment-contact {
       display: flex;
