@@ -1,5 +1,5 @@
 export const state = () => ({
-  lang: 'cn',
+  lang: 'en',
 })
 
 export const mutations = {
