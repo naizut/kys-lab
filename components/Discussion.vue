@@ -31,6 +31,8 @@
           >
         </div>
         <time>Posted on {{ subComment.created_on }}</time>
+        <br />
+        <p>{{ commentItem.content }}</p>
       </div>
     </div>
     <div class="comment-form">
