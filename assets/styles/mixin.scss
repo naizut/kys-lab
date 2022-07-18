@@ -2,13 +2,24 @@
 /*!
 	Lato font.
 */
+@font-face {
+  font-family: MagdaCleanMono;
+  src: url("//db.onlinewebfonts.com/t/c37da5b066ddb16c83552f73151d3fcd.eot");
+  src: url("//db.onlinewebfonts.com/t/c37da5b066ddb16c83552f73151d3fcd.eot?#iefix") format("embedded-opentype"),
+  url("//db.onlinewebfonts.com/t/c37da5b066ddb16c83552f73151d3fcd.woff2") format("woff2"),
+  url("//db.onlinewebfonts.com/t/c37da5b066ddb16c83552f73151d3fcd.woff") format("woff"),
+  url("//db.onlinewebfonts.com/t/c37da5b066ddb16c83552f73151d3fcd.ttf") format("truetype"),
+  url("//db.onlinewebfonts.com/t/c37da5b066ddb16c83552f73151d3fcd.svg#MagdaCleanMono") format("svg");
+}
 
 @font-face {
   font-family: Lato;
   font-weight: 400;
   font-style: normal;
   text-rendering:optimizeLegibility;
-  src: url("~@/assets/fonts/Lato/Lato-Light/Lato-Light.woff2") format("woff2"),url("~@/assets/fonts/Lato/Lato-Light/Lato-Light.woff2") format("woff2")
+  src:
+    url("~@/assets/fonts/Lato/Lato-Light/Lato-Light.woff2") format("woff2"),
+    url("~@/assets/fonts/Lato/Lato-Light/Lato-Light.woff2") format("woff2")
 }
 
 @font-face {

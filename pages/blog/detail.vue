@@ -11,9 +11,9 @@
         </div>
         <h1>{{ article.title }}</h1>
         <time>{{ article.modified_on }}</time>
-        <article class="mt10" v-html="article.content" />
-        <div class="mt10">{{ isCN ? '分类' : 'type' }}: {{ article.type }}</div>
-        <div v-if="article.tag" class="mt10">
+        <article v-html="article.content" />
+        <div class="mt20">{{ isCN ? '分类' : 'type' }}: {{ article.type }}</div>
+        <div v-if="article.tag">
           <span
             v-for="(tag, tagIndex) in article.tag.split(',')"
             :key="tagIndex"
@@ -25,46 +25,7 @@
 
         <hr />
 
-        <h2>Discussion</h2>
-        <div
-          v-for="(commentItem, commentIndex) in comments.items"
-          :key="commentItem.id"
-        >
-          {{ commentIndex }}# {{ commentItem.author }} <br />
-          {{ commentItem.content }}
-        </div>
-        <div>
-          <div style="display: flex; justify-content: space-between;">
-            <el-input
-              v-model="comment.author"
-              type="text"
-              placeholder="Your Name"
-              maxlength="20"
-              show-word-limit
-              class="mr5"
-            >
-            </el-input>
-            <el-input
-              v-model="comment.author_email"
-              type="text"
-              placeholder="Your Email"
-              maxlength="100"
-              show-word-limit
-              class="ml5"
-            >
-            </el-input>
-          </div>
-          <el-input
-            v-model="comment.content"
-            type="textarea"
-            placeholder="请输入内容"
-            maxlength="200"
-            show-word-limit
-            class="mt10"
-          >
-          </el-input>
-          <el-button class="mt10" @click="handleSubmit">Submit</el-button>
-        </div>
+        <Discussion :article-id="Number(id)" />
       </div>
 
       <div class="right-sidebar">
@@ -73,9 +34,12 @@
     </div>
   </div>
 </template>
+
 <script>
+import Discussion from '@/components/Discussion.vue'
 export default {
   name: 'BlogDetail',
+  components: { Discussion },
   async asyncData($nuxt) {
     let article = {}
 
@@ -100,21 +64,6 @@ export default {
   data() {
     return {
       article: {},
-      comment: {
-        author: '',
-        author_email: '',
-        content: '',
-      },
-      comments: {
-        items: [],
-        totalCount: 0,
-      },
-      queryInput: {
-        keywords: '',
-        articleId: Number(this.$route.query.id),
-        pageIndex: 1,
-        pageSize: 10,
-      },
       id: this.$route.query.id,
     }
   },
@@ -128,52 +77,6 @@ export default {
   computed: {
     isCN() {
       return this.$store.state.lang == 'cn'
-    },
-  },
-
-  async mounted() {
-    await this.$axios({
-      method: 'post',
-      url: `/api/comments/query`,
-      data: {
-        keywords: '',
-        articleId: Number(this.$route.query.id),
-        pageIndex: 1,
-        pageSize: 10,
-      },
-    })
-      .then((res) => {
-        this.comments = { ...res.data.result }
-        console.log(this.comments)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  },
-
-  methods: {
-    async handleSubmit() {
-      const { author, content } = this.comment
-      if (!author || !content) {
-        alert('plz input author and content')
-        return
-      }
-
-      await this.$axios({
-        method: 'post',
-        url: `/api/comments/create`,
-        data: {
-          ...this.comment,
-          articleId: this.article.id,
-        },
-      })
-        .then((res) => {
-          alert('success')
-          location.reload()
-        })
-        .catch((err) => {
-          console.log(err)
-        })
     },
   },
 }
@@ -190,11 +93,14 @@ export default {
     align-items: flex-start;
 
     .article__content {
-      width: 80%;
+      flex: 1;
       margin: 0;
 
       article {
-        min-height: 35vh;
+        @media screen and (min-width: 1024px) {
+          min-height: 35vh;
+        }
+        margin-top: 50px;
         h1 {
           font-weight: bold;
         }
@@ -202,7 +108,11 @@ export default {
     }
 
     .right-sidebar {
-      flex: 1;
+      width: 225px;
+      padding-left: 25px;
+      @media screen and (max-width: 599px) {
+        display: none;
+      }
     }
   }
 }
