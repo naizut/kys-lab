@@ -233,7 +233,7 @@ export default {
       a {
         color: #000;
         font-size: 18px;
-        line-height: 100px;
+        line-height: 80px;
         transition: ease 0.3s all;
         display: block;
         padding: 0 20px;
@@ -252,9 +252,10 @@ export default {
   .search-zone {
     cursor: pointer;
   }
+
   #modeSwitch {
     font-size: 12px;
-    margin-top: 40px;
+    margin-top: 30px;
 
     button {
       color: #666;
@@ -271,7 +272,7 @@ export default {
 
   #languageSwitch {
     margin-right: 20px;
-    margin-top: 30px;
+    margin-top: 20px;
 
     max-width: 108px;
   }
@@ -279,7 +280,7 @@ export default {
   #typesDropdown {
     box-sizing: border-box;
     position: absolute;
-    top: 100px;
+    top: 80px;
     right: 0;
     width: 100%;
     height: 0px;

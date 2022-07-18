@@ -48,7 +48,7 @@ export default {
   border-bottom: 5px solid transparent;
   box-sizing: border-box;
 
-  height: 100px;
+  height: 80px;
   width: 100%;
   // position: fixed;
   // top: 0;
@@ -62,11 +62,11 @@ export default {
     }
     a.logo {
       display: flex;
-      line-height: 100px;
+      line-height: 80px;
       text-decoration: none;
       width: 218px;
       img {
-        height: 100px;
+        height: 80px;
       }
       span {
         color: #000;
