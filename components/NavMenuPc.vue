@@ -310,7 +310,7 @@ export default {
   }
   .nav-mobile {
     display: none;
-    margin-top: 40px;
+    margin-top: 30px;
     @media screen and (max-width: 1200px) {
       display: block;
     }
