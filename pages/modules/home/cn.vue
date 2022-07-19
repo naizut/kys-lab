@@ -193,7 +193,7 @@ export default {
 
           @media screen and (max-width: 425px) {
             padding-top: 60px;
-            max-width: 250px;
+            max-width: 260px;
             text-align: center;
             margin: auto;
             font-size: 80px;
