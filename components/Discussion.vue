@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="comment-form">
-      <div v-show="comment.targetCommentId" class="comment-reply mb10">
+      <div v-show="comment.targetCommentId" class="comment-reply">
         Reply to:{{ comment.targetCommentAuthor }}
       </div>
       <div class="comment-contact">
@@ -172,11 +172,16 @@ export default {
 <style lang="scss" scoped>
 .discussion {
   width: 100%;
+  margin-top: 100px;
+
   .discussion-title {
     font-size: 38px;
   }
+
   .comment-item {
-    margin: 30px 0;
+    margin: 16px 0;
+    padding: 16px;
+    border: 1px solid #ccc;
 
     div {
       overflow: hidden;
@@ -201,6 +206,9 @@ export default {
     }
   }
   .comment-form {
+    .comment-reply {
+      margin-bottom: 16px;
+    }
     .comment-contact {
       display: flex;
       justify-content: space-between;

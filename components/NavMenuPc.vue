@@ -106,7 +106,7 @@ export default {
       isCenter: false,
       isCN: this.$store.state.lang == 'cn',
       langOptions: [
-        { name: 'English', value: 'en' },
+        { name: 'EN', value: 'en' },
         { name: '简体中文', value: 'cn' },
       ],
       routes: [
