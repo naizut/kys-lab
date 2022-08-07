@@ -243,10 +243,6 @@ export default {
       }
     }
 
-    .home-topic {
-      padding-bottom: 38px;
-    }
-
     #ourService {
       text-align: center;
       overflow: hidden;
