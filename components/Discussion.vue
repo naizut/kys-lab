@@ -11,11 +11,7 @@
       </div> -->
       <div>
         <h3>{{ commentItem.author }}</h3>
-        <a
-          href="javascript:void()"
-          @click="doReply(commentItem, commentItemIndex)"
-          >Reply</a
-        >
+        <a @click="doReply(commentItem, commentItemIndex)">Reply</a>
       </div>
       <time>Posted on {{ commentItem.created_on }}</time>
       <br />
@@ -24,15 +20,11 @@
       <div v-for="(subComment, subCommentIndex) in commentItem.children" :key="subComment.id" class="comment-level-2 ml20 mt20">
         <div>
           <h3>{{ subComment.author }}</h3>
-          <a
-            href="javascript:void()"
-            @click="doReply(subComment, subCommentIndex)"
-            >Reply</a
-          >
+          <a @click="doReply(subComment, subCommentIndex)">Reply</a>
         </div>
         <time>Posted on {{ subComment.created_on }}</time>
         <br />
-        <p>{{ commentItem.content }}</p>
+        <p>{{ subComment.content }}</p>
       </div>
     </div>
     <div class="comment-form">
@@ -125,7 +117,7 @@ export default {
         this.comments.items = jsonArrayClone(result.items).filter(
           (x) => x.root_comment_id == -1
         )
-        this.comments.items = this.comments.items.map((x) => {
+        this.comments.items = this.comments.items.map((x) => {  
           x.children = [
             ...result.items.filter((y) => y.root_comment_id == x.id),
           ]
