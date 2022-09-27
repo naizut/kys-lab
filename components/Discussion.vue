@@ -76,6 +76,7 @@
 </template>
 
 <script>
+import { jsonArrayClone } from '@/utils/tools'
 export default {
   props: {
     articleId: {
@@ -120,13 +121,13 @@ export default {
         },
       })
       if (res.data.code == 200) {
-        this.comments = { ...res.data.result }
-        this.comments.items = this.comments.items.filter(
-          (x) => !x.root_comment_id
+        const { result } = res.data
+        this.comments.items = jsonArrayClone(result.items).filter(
+          (x) => x.root_comment_id == -1
         )
         this.comments.items = this.comments.items.map((x) => {
           x.children = [
-            ...res.data.result.items.filter((y) => y.root_comment_id == x.id),
+            ...result.items.filter((y) => y.root_comment_id == x.id),
           ]
           return x
         })
