@@ -1,6 +1,6 @@
 <template>
-  <div class="discussion">
-    <h2 class="discussion-title">Discussion</h2>
+  <div class="comments">
+    <h2 class="comment-title">Comments</h2>
     <div
       v-for="(commentItem, commentItemIndex) in comments.items"
       :key="commentItem.id"
@@ -73,8 +73,8 @@ export default {
   props: {
     articleId: {
       type: Number,
-      required: true,
-    },
+      required: true
+    }
   },
 
   data() {
@@ -87,12 +87,12 @@ export default {
         rootCommentId: -1,
         targetCommentId: -1,
         targetCommentFloorNum: -1,
-        targetCommentAuthor: '',
+        targetCommentAuthor: ''
       },
       comments: {
         items: [],
-        totalCount: 0,
-      },
+        totalCount: 0
+      }
     }
   },
 
@@ -109,8 +109,8 @@ export default {
           keywords: '',
           articleId: Number(this.articleId),
           pageIndex: 1,
-          pageSize: 10,
-        },
+          pageSize: 10
+        }
       })
       if (res.data.code == 200) {
         const { result } = res.data
@@ -119,16 +119,16 @@ export default {
         )
         this.comments.items = this.comments.items.map((x) => {  
           x.children = [
-            ...result.items.filter((y) => y.root_comment_id == x.id),
+            ...result.items.filter((y) => y.root_comment_id == x.id)
           ]
           return x
         })
       }
     },
     doReply(obj, index) {
-      if(obj.rootCommentId) {
+      if (obj.rootCommentId) {
         this.comment.rootCommentId = obj.rootCommentId
-      }else {
+      } else {
         this.comment.rootCommentId = obj.id
       }
       this.comment.targetCommentId = obj.id
@@ -147,8 +147,8 @@ export default {
         url: `/api/comments/create`,
         data: {
           ...this.comment,
-          articleId: this.articleId,
-        },
+          articleId: this.articleId
+        }
       })
         .then((res) => {
           alert('success')
@@ -157,17 +157,17 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-    },
-  },
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.discussion {
+.comments {
   width: 100%;
   margin-top: 100px;
 
-  .discussion-title {
+  .comment-title {
     font-size: 38px;
   }
 

@@ -12,8 +12,8 @@
   </div>
 </template>
 <script>
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+import Header from '@/components/Business/header'
+import Footer from '@/components/Business/footer'
 
 export default {
   name: 'Layout',

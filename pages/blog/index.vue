@@ -79,7 +79,7 @@ export default {
     let types = {}
     await $nuxt.$axios({
       methods: 'get',
-      url: '/api/articles/types',
+      url: '/api/articles/types'
     })
     .then((res) => {
       types = [...res.data.result]
@@ -92,13 +92,13 @@ export default {
       type: $nuxt.route.query.type || '',
       keywords: '',
       pageIndex: 1,
-      pageSize: 10,
+      pageSize: 10
     }
 
     await $nuxt.$axios({
       url: '/api/articles/query',
       method: 'post',
-      data: queryInput,
+      data: queryInput
     })
     .then((res) => {
       articles = [...res.data.result.items]
@@ -117,20 +117,20 @@ export default {
     return {
       articles: {},
       types: [],
-      type: this.$route.query.type || '',
+      type: this.$route.query.type || ''
     }
   },
 
   head() {
     return {
-      title: `My Blog | Ky's lab - Idea Factory, Mind Blasting`,
+      title: `My Blog | Ky's lab - Idea Factory, Mind Blasting`
     }
   },
 
   computed: {
     isCN() {
       return this.$store.state.lang == 'cn'
-    },
+    }
   },
 
   methods: {
@@ -140,7 +140,7 @@ export default {
       await this.$axios({
         url: '/api/articles/query',
         method: 'post',
-        data: this.queryInput,
+        data: this.queryInput
       }).then((res) => {
         this.articles = res.data.result.items
         this.totalCount = res.data.result.totalCount
@@ -163,8 +163,8 @@ export default {
     handleTypeSelect(v) {
       this.$router.replace(`/blog?type=${v}`)
       this.initArticles()
-    },
-  },
+    }
+  }
 }
 </script>
 

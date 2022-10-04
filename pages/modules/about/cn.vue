@@ -35,7 +35,7 @@
                   :xs="12"
                   @click.native="goTo(proj.url)">
             <div class="cover">
-              <img :src="getProjImg(proj.filename)">
+              <img :src="getProjImg(proj.filename)"/>
             </div>
           </el-col>
         </el-row>
@@ -52,29 +52,29 @@ export default {
         {
           name: '紫江',
           filename: 'zijiang.svg',
-          url: 'http://zijiangfoundation.com/',
+          url: 'http://zijiangfoundation.com/'
         },
         {
           name: 'Tuntex',
           filename: 'tuntex.svg',
-          url: 'https://www.tuntex-carpet.com/',
+          url: 'https://www.tuntex-carpet.com/'
         },
         {
           name: 'high创',
           filename: 'highco.svg',
-          url: 'http://www.highcogroup.com',
+          url: 'http://www.highcogroup.com'
         },
         {
           name: 'WeEn-semi',
           filename: 'ween.svg',
-          url: 'https://www.ween-semi.com/',
+          url: 'https://www.ween-semi.com/'
         },
         {
           name: '幸福五号',
           filename: 'zizhu.svg',
-          url: 'http://www.zizhufive.org/',
-        },
-      ],
+          url: 'http://www.zizhufive.org/'
+        }
+      ]
     }
   },
 
@@ -96,8 +96,8 @@ export default {
     },
     goTo(url) {
       window.location.href = url
-    },
-  },
+    }
+  }
 }
 </script>
 

@@ -12,7 +12,7 @@
               <button class="f100"
                       @click="scrollToService()">
                 Get Design Now
-                <i class="el-icon-right ml5" />
+                <i class="el-icon-right ml5" ></i>
               </button>
             </el-row>
           </div>
@@ -39,7 +39,8 @@
           <el-row :gutter="30"
                   class="img-container">
             <el-col :span="16"
-                    :xs="24" @click.native="$router.push('/about')">
+                    :xs="24"
+@click.native="$router.push('/about')">
               <img src="@/assets/images/home-service.jpg" />
               <p>INDIVIDUAL / CORPORATE WEBSITES</p>
             </el-col>
@@ -82,13 +83,13 @@ export default {
   name: 'Home',
   data() {
     return {
-      newsList: [],
+      newsList: []
     }
   },
 
   head() {
     return {
-      title: "Ky's Lab - 记录生活, 分享观点 | Kevin Zhou的个人网站",
+      title: "Ky's Lab - 记录生活, 分享观点 | Kevin Zhou的个人网站"
     }
   },
 
@@ -114,11 +115,11 @@ export default {
         const top = document.getElementById('ourService').offsetTop
         window.scrollTo({
           top,
-          behavior: 'smooth',
+          behavior: 'smooth'
         })
       })
-    },
-  },
+    }
+  }
 }
 </script>
 

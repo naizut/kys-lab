@@ -11,7 +11,7 @@
         </div>
         <h1>{{ article.title }}</h1>
         <time>{{ article.modified_on }}</time>
-        <article v-html="article.content" />
+        <article v-html="article.content" ></article>
         <div class="article-type">{{ isCN ? '分类' : 'Type' }}: {{ article.type }}</div>
         <div v-if="article.tag">
           <span
@@ -23,7 +23,7 @@
           </span>
         </div>
 
-        <Discussion :article-id="Number(id)" />
+        <Comments :article-id="Number(id)" />
       </div>
 
       <!-- <div class="right-sidebar">
@@ -34,17 +34,17 @@
 </template>
 
 <script>
-import Discussion from '@/components/Discussion.vue'
+import Comments from '@/components/Business/comments.vue'
 export default {
   name: 'BlogDetail',
-  components: { Discussion },
+  components: { Comments },
   async asyncData($nuxt) {
     let article = {}
 
     await $nuxt
       .$axios({
         method: 'get',
-        url: `/api/articles/get/${$nuxt.route.query.id}`,
+        url: `/api/articles/get/${$nuxt.route.query.id}`
       })
       .then((res) => {
         article = { ...res.data.result }
@@ -55,28 +55,28 @@ export default {
       })
 
     return {
-      article,
+      article
     }
   },
 
   data() {
     return {
       article: {},
-      id: this.$route.query.id,
+      id: this.$route.query.id
     }
   },
 
   head() {
     return {
-      title: `${this.article.title} | Ky's lab - Idea Factory, Mind Blasting`,
+      title: `${this.article.title} | Ky's lab - Idea Factory, Mind Blasting`
     }
   },
 
   computed: {
     isCN() {
       return this.$store.state.lang == 'cn'
-    },
-  },
+    }
+  }
 }
 </script>
 

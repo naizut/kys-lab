@@ -18,7 +18,7 @@ export default {
   computed: {
     isCN() {
       return this.$store.state.lang == 'cn'
-    },
-  },
+    }
+  }
 }
 </script>

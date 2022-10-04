@@ -4,23 +4,20 @@
       <router-link to="/home"
                    class="logo"
       >
-        <!-- <img src="@/assets/brand.png"
-             alt="Logo"
-        >
-        <span>s</span> -->
         <span>{{isCN?'奇思实验室':`Ky's Lab`}}</span>
       </router-link>
-      <NavMenuPc ref="navbarPC" :is-home="isHome" />
+      <NavbarPC ref="navbarPC" :is-home="isHome" />
     </div>
   </nav>
 </template>
+
 <script>
-import NavMenuPc from './NavMenuPc'
+import NavbarPC from './navbar-pc.vue'
 
 export default {
   name: 'Header',
   components: {
-    NavMenuPc
+    NavbarPC
   },
 
   props: {

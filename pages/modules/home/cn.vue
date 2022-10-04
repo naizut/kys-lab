@@ -12,7 +12,7 @@
               <button class="f100"
                       @click="scrollToService()">
                 立刻体验
-                <i class="el-icon-right ml5" />
+                <i class="el-icon-right ml5" ></i>
               </button>
             </el-row>
           </div>
@@ -84,13 +84,13 @@ export default {
 
   data() {
     return {
-      newsList: [],
+      newsList: []
     }
   },
 
   head() {
     return {
-      title: "奇思实验室 - 记录生活, 分享观点 | Kevin Zhou的个人网站",
+      title: '奇思实验室 - 记录生活, 分享观点 | Kevin Zhou的个人网站'
     }
   },
 
@@ -116,11 +116,11 @@ export default {
         const top = document.getElementById('ourService').offsetTop
         window.scrollTo({
           top,
-          behavior: 'smooth',
+          behavior: 'smooth'
         })
       })
-    },
-  },
+    }
+  }
 }
 </script>
 

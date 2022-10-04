@@ -6,8 +6,8 @@
         {{isCN?'奇思实验室':`Ky's Lab`}}
       </div>
       <div class="close"
-           @click="hideNavMenuMobile">
-        <i class="el-icon-close" />
+           @click="hideNavbarMobile">
+        <i class="el-icon-close" ></i>
       </div>
     </div>
 
@@ -15,17 +15,17 @@
       <ul>
         <li @click="goto('/home')">
           <router-link to="/home">{{isCN?'首页':'Home'}}</router-link>
-          <i class="el-icon-arrow-right pull-right" />
+          <i class="el-icon-arrow-right pull-right" ></i>
         </li>
         <li @click="goto('/about')">
           <router-link to="/about">{{isCN?'关于':'About'}}</router-link>
-          <i class="el-icon-arrow-right pull-right" />
-          <ul />
+          <i class="el-icon-arrow-right pull-right" ></i>
+          <ul ></ul>
         </li>
         <li @click="goto('/blog')">
           <router-link to="/blog">{{isCN?'博客':'Blog'}}</router-link>
-          <i class="el-icon-arrow-right pull-right" />
-          <ul />
+          <i class="el-icon-arrow-right pull-right" ></i>
+          <ul ></ul>
         </li>
       </ul>
     </div>
@@ -40,16 +40,16 @@ export default {
   computed: {
     isCN() {
       return this.$store.state.lang == 'cn'
-    },
+    }
   },
 
   methods: {
     goto(url) {
-      this.hideNavMenuMobile()
+      this.hideNavbarMobile()
       this.$router.replace(url)
     },
 
-    hideNavMenuMobile() {
+    hideNavbarMobile() {
       document.querySelector('.nav-menu-mobile').classList.remove('active')
     },
 
@@ -63,8 +63,8 @@ export default {
     async setEN() {
       await this.$store.dispatch('switchLanguage', 'en')
       document.querySelector('.nav-menu-mobile').classList.remove('active')
-    },
-  },
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

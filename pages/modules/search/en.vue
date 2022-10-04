@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       keyword: this.$route.query.keyword,
-      articles: {},
+      articles: {}
     }
   },
   mounted() {
@@ -40,12 +40,12 @@ export default {
         type: '',
         keywords: this.keyword || '',
         pageIndex: 1,
-        pageSize: 10,
-      },
+        pageSize: 10
+      }
     }).then((res) => {
       this.articles = res.data.result.items
     })
-  },
+  }
 }
 </script>
 <style lang="scss">

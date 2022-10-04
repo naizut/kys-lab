@@ -35,8 +35,8 @@ export default {
         type: '',
         keywords: this.keyword || '',
         pageIndex: 1,
-        pageSize: 10,
-      },
+        pageSize: 10
+      }
     }).then((res) => {
       this.articles = res.data.result.items
     })
